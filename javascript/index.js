@@ -1,4 +1,10 @@
 class Planet {
+    constructor(name, num) {
+        this.board = this.CreateBoard(num);
+        this.name = name;
+        this.num = num;
+    }
+
     CreateBoard(num) {
         const board = [];
         let count = 1
@@ -30,38 +36,30 @@ class Planet {
             }
         }
     }
-
-    constructor(name, num) {
-        this.board = this.CreateBoard(num);
-        this.name = name;
-        this.num = num;
-    }
 }
-
 
 
 class Rover {
     constructor(name, planet) {
         this.name = name;
         this.direction = 'E';
-        this.actualPosition = { row: 0, col: 0 }
-        this.travelLog = [{ row: 0, col: 0 }]
+        this.actualPosition = { row: 0, col: 0, id: 1 }
+        this.travelLog = [{ row: 0, col: 0, id: 1 }]
         this.planet = planet;
     }
 
     setCommands(string) {
-
         let validCommands = ['f', 'b', 'l', 'r'];
+
         for (let i = 0; i < string.length; i++) {
             if (!validCommands.includes(string[i])) {
                 console.log(`The command ${string[i]} is not valid. Please, add a valid command: F | B | R | L`);
+                return
             }
         }
 
         [...string].forEach(letter => {
             letter = letter.toLowerCase()
-
-
             console.log('instruction:', letter)
             if (letter === 'f') {
                 console.log('moveForward')
@@ -120,9 +118,10 @@ class Rover {
     moveFoward() {
         switch (this.direction) {
             case 'N':
-                if (this.actualPosition.row > 0) {
+                if (this.actualPosition.row -1 >= 0) {
                     this.actualPosition.row--;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col };
+                    this.actualPosition.id = this.actualPosition.id - this.planet.board.length;
+                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
                     this.travelLog.push(newPosition);
                     console.log('the rover moved north')
                 } else {
@@ -130,19 +129,26 @@ class Rover {
                 }
                 break;
             case 'W':
-                if (this.actualPosition.col > 0) {
+                if (this.actualPosition.col - 1 >= 0) {
+                    // console.log('position:', this.actualPosition.row);
+                    // console.log('length', this.planet.board.length)
                     this.actualPosition.col--;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col };
+                    this.actualPosition.id = this.actualPosition.id - 1;
+                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
                     this.travelLog.push(newPosition);
                     console.log('the rover moved west')
                 } else {
+                    // console.log('position en else:', this.actualPosition.row);
+                    // console.log('length en else', this.planet.board.length)
                     console.log('the rover can not move west')
                 }
                 break;
             case 'S':
-                if (this.actualPosition.col < this.planet.board.length) {
+                if (this.actualPosition.row < this.planet.board.length - 1) {
                     this.actualPosition.row++;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col };
+                    this.actualPosition.id = this.actualPosition.id + this.planet.board.length;
+                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
+                    console.log(newPosition)
                     this.travelLog.push(newPosition);
                     console.log('the rover moved south')
                 } else {
@@ -150,9 +156,11 @@ class Rover {
                 }
                 break;
             case 'E':
-                if (this.actualPosition.col < this.planet.board.length) {
+                if (this.actualPosition.col <= this.planet.board.length - 1) {
                     this.actualPosition.col++;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col };
+                    this.actualPosition.id++;
+                    console.log('length board', this.planet.board.length)
+                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
                     this.travelLog.push(newPosition);
                     console.log('the rover moved east')
                 } else {
@@ -211,5 +219,5 @@ class Rover {
 const thePlanet = new Planet('Mars', 3)
 const theRover = new Rover('Apolo XVII', thePlanet)
 thePlanet.CreateObstacles()
-theRover.setCommands('mff')
+theRover.setCommands('ffrffrffrfff')
 console.log(theRover)
