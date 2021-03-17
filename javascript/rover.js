@@ -1,22 +1,4 @@
-class Planet {
-    constructor(name, num) {
-        const createBoard = (num) => {
-            const board = [];
-            for (let i = 0; i < num; i++) {
-                const rowArr = []
-                for (let j = 0; j < num; j++) {
-                    rowArr.push({ row: i, col: j });
-                }
-                board.push(rowArr);
-            }
-            return board
-        }
-        this.board = createBoard(num);
-        this.name = name;
-    }
-}
-
-class Rover {
+export default class Rover {
     constructor(name, planet) {
         this.name = name;
         this.direction = 'E';
@@ -171,13 +153,4 @@ class Rover {
                 break;
         }
     }
-
-
-
-
 }
-
-const thePlanet = new Planet('Mars', 3)
-const theRover = new Rover('Apolo XVII', thePlanet)
-theRover.setCommands('fffff')
-console.log(theRover)
