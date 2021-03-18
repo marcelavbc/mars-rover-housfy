@@ -1,39 +1,36 @@
-export default class Planet {
-    constructor(name, num) {
-        this.board = this.CreateBoard(num);
+class Planet {
+    constructor(name, size) {
+        this.board = this.createBoard(size);
         this.name = name;
-        this.num = num;
+        this.size = size;
     }
 
-    CreateBoard(num) {
+    createBoard(size) {
         const board = [];
         let count = 1
-        for (let i = 0; i < num; i++) {
+        for (let i = 0; i < size; i++) {
             const rowArr = []
-            for (let j = 0; j < num; j++) {
-                rowArr.push({ row: i, col: j, id: count++, obstacle: false });
+            for (let j = 0; j < size; j++) {
+                rowArr.push({ row: i, col: j, id: count++ });
             }
             board.push(rowArr);
         }
         return board
     }
 
-    CreateObstacles() {
-        let sizeGrid = this.num * this.num;
-        var random;
-        for (let i = 0; i < this.board.length - 2; i++) {
-            random = Math.floor(Math.random() * sizeGrid) + 1;
-            for (let j = 0; j < this.board.length; j++) {
-                for (let k = 0; k < this.board.length; k++) {
-                    if (this.board[j][k].id === random) {
-                        if (this.board[0][0].id !== random) {
-                            this.board[j][k].obstacle = true;
-                        } else {
-                            this.CreateObstacles()
-                        }
-                    }
-                }
+    generateObstacles(array) {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].row > this.board.length || array[i].col > this.board.length) {
+                console.log('ALERT: You can not add obstacles out of the planet! The obstacle position can not be bigger than the planet size.')
+                //here, stop script
+            } else {
+                this.obstacles = array;
+
             }
+            this.obstacles = array;
         }
     }
 }
+
+
+module.exports = { Planet };

@@ -1,15 +1,14 @@
-export default class Rover {
-    constructor(name, planet) {
+class Rover {
+    constructor(name, planet, actualPosition, direction) {
         this.name = name;
-        this.direction = 'E';
-        this.actualPosition = { row: 0, col: 0, id: 1, obstacle: false }
-        this.travelLog = [{ row: 0, col: 0, id: 1, obstacle: false }]
+        this.direction = direction;
+        this.actualPosition = actualPosition;
+        this.travelLog = [{ row: 0, col: 0 }]
         this.planet = planet;
     }
 
     setCommands(string) {
-        let validCommands = ['f', 'b', 'l', 'r'];
-
+        let validCommands = ['F', 'B', 'L', 'R'];
         for (let i = 0; i < string.length; i++) {
             if (!validCommands.includes(string[i])) {
                 console.log(`The command ${string[i]} is not valid. Please, add a valid command: F | B | R | L`);
@@ -18,22 +17,17 @@ export default class Rover {
         }
 
         [...string].forEach(letter => {
-            letter = letter.toLowerCase()
-            // console.log('instruction:', letter)
-            if (letter === 'f') {
-                console.log('moveForward')
+            console.log(`Movement: ${letter}`)
+            if (letter === 'F') {
                 this.moveFoward()
                 return;
-            } else if (letter === 'b') {
-                console.log('moveBack');
+            } else if (letter === 'B') {
                 this.moveBack()
                 return;
-            } else if (letter === 'l') {
-                console.log('turnLeft');
+            } else if (letter === 'L') {
                 this.turnLeft()
                 return;
-            } else if (letter === 'r') {
-                console.log('turnRight')
+            } else if (letter === 'R') {
                 this.turnRigth()
                 return;
             }
@@ -74,101 +68,145 @@ export default class Rover {
         }
     }
 
+    checkObstacle(row, col) {
+        let isBlocked = false
+        for (let i = 0; i < this.planet.obstacles.length; i++) {
+            if (this.planet.obstacles[i].row === row && this.planet.obstacles[i].col === col) {
+                isBlocked = true;
+            }
+        };
+        return isBlocked
+    }
+
     moveFoward() {
         switch (this.direction) {
             case 'N':
-                if (this.actualPosition.row - 1 >= 0) {
-                    this.actualPosition.row--;
-                    this.actualPosition.id = this.actualPosition.id - this.planet.board.length;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
-                    this.travelLog.push(newPosition);
-                    console.log('the rover moved north')
+                if (this.actualPosition[0].row - 1 >= 0) {
+                    this.actualPosition[0].row--;
+                    if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
+                        console.log('You can not move! Find another route');
+                        return;
+                    } else {
+                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
+                        this.travelLog.push(newPosition);
+                        console.log('the rover moved north')
+                    }
                 } else {
-                    console.log('the rover can not move north')
+                    console.log('The rover can not move north')
                 }
-                break;
+                break
             case 'W':
-                if (this.actualPosition.col - 1 >= 0) {
-                    this.actualPosition.col--;
-                    this.actualPosition.id = this.actualPosition.id - 1;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
-                    this.travelLog.push(newPosition);
-                    console.log('the rover moved west')
+                if (this.actualPosition[0].col - 1 >= 0) {
+                    this.actualPosition[0].col--;
+                    if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
+                        console.log('You can not move! Find another route');
+                        return;
+                    } else {
+                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
+                        this.travelLog.push(newPosition);
+                        console.log('the rover moved west')
+                    }
                 } else {
-                    console.log('the rover can not move west')
+                    console.log('The rover can not move west')
                 }
-                break;
+                break
             case 'S':
-                if (this.actualPosition.row < this.planet.board.length - 1) {
-                    this.actualPosition.row++;
-                    this.actualPosition.id = this.actualPosition.id + this.planet.board.length;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
-                    this.travelLog.push(newPosition);
-                    console.log('the rover moved south')
+                if (this.actualPosition[0].row < this.planet.board.length - 1) {
+                    this.actualPosition[0].row++;
+                    if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
+                        console.log('You can not move! Find another route');
+                        return;
+                    } else {
+                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
+                        this.travelLog.push(newPosition);
+                        console.log('the rover moved south')
+                    }
                 } else {
-                    console.log('the rover can not move south')
+                    console.log('The rover can not move south')
                 }
-                break;
+                break
             case 'E':
-                if (this.actualPosition.col <= this.planet.board.length - 1) {
-                    this.actualPosition.col++;
-                    this.actualPosition.id++;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
-                    this.travelLog.push(newPosition);
-                    console.log('the rover moved east')
+                if (this.actualPosition[0].col < this.planet.board.length - 1) {
+                    this.actualPosition[0].col++;
+                    if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
+                        console.log('You can not move! Find another route');
+                        return;
+                    } else {
+                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
+                        this.travelLog.push(newPosition);
+                        console.log('the rover moved east')
+                    }
                 } else {
-                    console.log('the rover can not move east')
+                    console.log('The rover can not move east')
                 }
                 break
         }
     }
-
+    
     moveBack() {
         switch (this.direction) {
             case 'N':
-                if (this.actualPosition.row + 1 < this.planet.board.length) {
-                    this.actualPosition.row++;
-                    this.actualPosition.id = this.actualPosition.id + this.planet.board.length;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
-                    this.travelLog.push(newPosition);
-                    console.log('the rover moved south')
+                if (this.actualPosition[0].row + 1 < this.planet.board.length) {
+                    this.actualPosition[0].row++;
+                    if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
+                        console.log('You can not move! Find another route');
+                        return;
+                    } else {
+                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
+                        this.travelLog.push(newPosition);
+                        console.log('The rover moved south')
+                    }
                 } else {
-                    console.log('the rover can not move south')
+                    console.log('The rover can not move south')
                 }
-                break;
+                break
             case 'W':
-                if (this.actualPosition.col + 1 < this.planet.board.length) {
-                    this.actualPosition.col++;
-                    this.actualPosition.id = this.actualPosition.id + 1;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
-                    this.travelLog.push(newPosition);
-                    console.log('the rover moved east')
+                if (this.actualPosition[0].col + 1 < this.planet.board.length) {
+                    this.actualPosition[0].col++;
+                    if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
+                        console.log('You can not move! Find another route');
+                        return;
+                    } else {
+                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
+                        this.travelLog.push(newPosition);
+                        console.log('the rover moved east')
+                    }
                 } else {
-                    console.log('the rover can not move east')
+                    console.log('The rover can not move east')
                 }
-                break;
+                break
             case 'S':
-                if (this.actualPosition.row - 1 >= 0) {
-                    this.actualPosition.row--;
-                    this.actualPosition.id = this.actualPosition.id - this.planet.board.length;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
-                    this.travelLog.push(newPosition);
-                    console.log('the rover moved north')
+                if (this.actualPosition[0].row - 1 >= 0) {
+                    this.actualPosition[0].row--;
+                    if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
+                        console.log('You can not move! Find another route');
+                        return;
+                    } else {
+                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
+                        this.travelLog.push(newPosition);
+                        console.log('the rover moved north')
+                    }
                 } else {
-                    console.log('the rover can not move north')
+                    console.log('The rover can not move north')
                 }
-                break;
+                break
             case 'E':
-                if (this.actualPosition.col - 1 >= 0) {
-                    this.actualPosition.col--;
-                    this.actualPosition.id--;
-                    const newPosition = { row: this.actualPosition.row, col: this.actualPosition.col, id: this.actualPosition.id };
-                    this.travelLog.push(newPosition);
-                    console.log('the rover moved west')
+                if (this.actualPosition[0].col - 1 >= 0) {
+                    this.actualPosition[0].col--;
+                    if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
+                        console.log('You can not move! Find another route');
+                        return;
+                    } else {
+                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
+                        this.travelLog.push(newPosition);
+                        console.log('the rover moved west')
+                    }
                 } else {
-                    console.log('the rover can not move west')
+                    console.log('The rover can not move west')
                 }
                 break
         }
     }
 }
+
+module.exports = { Rover };
