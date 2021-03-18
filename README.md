@@ -23,6 +23,7 @@ possible point, aborts the sequence and reports the obstacle.
 #### Development
 
 There are many planets to visit besides Mars! With that in mind, this software has been developed to be used on any other surface specified by the customer. 
+The software is written in JavaScript following object oriented.
 
 The function of the Planet class is: 
 
@@ -40,22 +41,40 @@ On the other hand, the Rover class is responsible for:
 
 In index.js, the client must insert the following data:
 
-**1. Planet:** 
+**Planet:** 
 *Name and Surface*
-Example for Planet Mars with a 10 x 10 area:
+- Example for Planet Mars with a 10 x 10 area:
 **const thePlanet = new Planet('Mars', 10)**
 
 *Obstacles*
-Example for two obstacles at positions 0,1 and 3,2:
+- Example for two obstacles at positions 0,1 and 3,2:
 **thePlanet.generateObstacles([{ row: 0, col: 1 }, { row: 3, col: 2 }]);**
 
-**2. Rover:**
+**Rover:**
 *Create the Rover*
-Example for Rover Nebula that arrives to Mars at position 0,0 and is facing east:
+- Example for Rover Nebula that arrives to Mars at position 0,0 and is facing east:
 **const theRover = new Rover('Nebula', thePlanet, [{ row: 0, col: 0 }], 'E');** 
 
 *Create route for the rover:*
-Example for route Forward, Forwards, Right, Right, Back, Left:
+- Example for route Forward, Forwards, Right, Right, Back, Left:
 **theRover.setCommands('FFRRBL');**
+
+## Tech used
+
+- Javascript 
+- Jest
+
+## Execution
+Node.js is used to execute the Javascript code on the server. This means your machine will need to have node and npm installed.
+
+To run de program, inside de project folder, run npm install. 
+Next, to execute: 
+**npm start**
+
+To see execute teste: 
+**npm test**
+
+
+
 
 
