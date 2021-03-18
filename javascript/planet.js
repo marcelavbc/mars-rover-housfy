@@ -16,7 +16,7 @@ class Planet {
             }
             board.push(rowArr);
         }
-        return board
+        return board;
     }
 
     //Generates obstacles on the planet's surface

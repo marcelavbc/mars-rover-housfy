@@ -9,7 +9,7 @@ console.log('***');
 
 //Generate obstacles
 thePlanet.generateObstacles([{ row: 1, col: 1 }]);
-console.log(`ALERT: ${thePlanet.name} has ${thePlanet.obstacles.length} obstacle! You should avoid them!`);
+console.log(`ALERT: ${thePlanet.name} has ${thePlanet.obstacles.length} obstacle(s)! You should avoid them!`);
 console.log('***');
 
 //Land the rover and define position and direction
