@@ -21,8 +21,8 @@ class Planet {
     generateObstacles(array) {
         for (let i = 0; i < array.length; i++) {
             if (array[i].row > this.board.length || array[i].col > this.board.length) {
-                console.log('ALERT: You can not add obstacles out of the planet! The obstacle position can not be bigger than the planet size.')
-                //here, stop script
+                console.log('ALERT: You can not add obstacles out of the planet! The obstacle position can not be bigger than the planet size.');
+                return;
             } else {
                 this.obstacles = array;
 

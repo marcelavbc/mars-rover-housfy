@@ -1,23 +1,24 @@
 {
   "name": "housfy",
   "version": "1.0.0",
-  "description": "Housfy test",
+  "description": "## Your Task You’re part of the team that explores Mars by sending remotely controlled vehicles to the surface of the planet. Develop a software that translates the commands sent from earth to instructions that are understood by the rover.",
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node javascript/index.js"
-    },
+    "start": "node javascript/index.js"  
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marcelavbc/mars-rover-housfy.git"
   },
-  "author": "Marcela Vilas Boas",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/marcelavbc/mars-rover-housfy/issues"
   },
   "homepage": "https://github.com/marcelavbc/mars-rover-housfy#readme",
-  "dependencies": {
+  "devDependencies": {
     "jest": "^26.6.3"
   }
 }

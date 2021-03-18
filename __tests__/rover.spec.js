@@ -1,21 +1,33 @@
-const { Planet } = require('../planet')
-const { Rover } = require('../rover')
+const { Planet } = require('../javascript/planet')
+const { Rover } = require('../javascript/rover')
 
-describe("Test Rover Class", () => {
-    test("Rover should move", () => {
-        const thePlanet = new Planet('Mars', 3)
-        const theRover = new Rover('Apolo XVII', [{ row: 0, col: 0 }], 'W')
-        //thePlanet.CreateObstacles()
-        theRover.setCommands('frlf')
-        // aqui tem numeros aleatorios.
-        
-        // Tem que avaliar qual seria a posicao depois de executar os comandos acima
-        // E expor o getPosition()pra poder chamar:
-        //
-        expect(theRover.getPosition().row).toEqual(3);
-        
-        expect(theRover.getPosition().col).toEqual(4);
-        // essa linha eh so pra ver o teste unitario funcionando.Apagar:
-        expect(4).toEqual(4);
-    });
+test('The Rover turns left', () => {
+    const thePlanet = new Planet('Pluto', 3)
+    const theRover = new Rover('Nebula', thePlanet, [{ row: 0, col: 0 }], 'N')
+    theRover.turnLeft("L");
+    expect(theRover.direction).toEqual("W");
 });
+
+test('The Rover turns right', () => {
+    const thePlanet = new Planet('Pluto', 3)
+    const theRover = new Rover('Nebula', thePlanet, [{ row: 0, col: 0 }], 'N')
+    theRover.turnRigth("R");
+    expect(theRover.direction).toEqual("E");
+});
+
+test('The Rover moves foward', () => {
+    const thePlanet = new Planet('Pluto', 3)
+    const theRover = new Rover('Nebula', thePlanet, [{ row: 0, col: 0 }], 'E')
+    thePlanet.generateObstacles([{ row: 1, col: 1 }]);
+    theRover.moveFoward();
+    expect(theRover.actualPosition[0]).toEqual({ row: 0, col: 1 });
+});
+
+test('The Rover moves back', () => {
+    const thePlanet = new Planet('Pluto', 3)
+    const theRover = new Rover('Nebula', thePlanet, [{ row: 0, col: 2 }], 'E')
+    thePlanet.generateObstacles([{ row: 1, col: 1 }]);
+    theRover.moveBack();
+    expect(theRover.actualPosition[0]).toEqual({ row: 0, col: 1 });
+});
+
