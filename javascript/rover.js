@@ -201,7 +201,6 @@ class Rover {
                     } else {
                         console.log(`${this.name} moved west`);
                         console.log('===');
-
                     }
                 } else {
                     console.log(`It is not possible to move to ${this.direction}! The ${this.planet.name} is over... Try again with a new route.`);
