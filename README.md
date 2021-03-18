@@ -1,10 +1,51 @@
 # mars-rover-housfy
 
-## Your Task
-You’re part of the team that explores Mars by sending remotely controlled vehicles to the surface
-of the planet. Develop a software that translates the commands sent from earth to instructions
-that are understood by the rover.
+### Project developed for Housfy's recruitment process. 
 
+## Development
+
+There are many planets to visit besides Mars! With that in mind, this software has been developed to be used on any other surface specified by the customer. 
+
+The function of the Planet class is: 
+
+- Give name to the planet;
+- Determine the area of the planet;
+- Create the obstacles to be avoided. 
+
+On the other hand, the Rover class is responsible for: 
+
+- Determining where the rover will be initially placed;
+- Setting the initial direction of the rover (north, south, east, west);
+- Moving the equipment across the surface. 
+
+## Commands:
+
+In index.js, the client must insert the following data:
+
+1. Planet: 
+
+Name and Surface
+Example for Planet Mars with a 10 x 10 area:
+**const thePlanet = new Planet('Mars', 10)**.
+
+Obstacles
+Example for two obstacles at positions 0,1 and 3,2:
+**thePlanet.generateObstacles([{ row: 0, col: 1 }, { row: 3, col: 2 }]);**.
+
+2. Rover:
+
+Create the Rover
+Example for Rover Nebula that arrives to Mars at position 0,0 and is facing east:
+**const theRover = new Rover('Nebula', thePlanet, [{ row: 0, col: 0 }], 'E');** 
+
+Create route for the rover:
+Example for route Forward, Forwards, Right, Right, Back, Left:
+**theRover.setCommands('FFRRBL');**
+
+
+Translated with www.DeepL.com/Translator (free version)
+## The task
+You’re part of the team that explores Mars by sending remotely controlled vehicles to the surface of the planet. Develop a software that translates the commands sent from earth to instructions that are understood by the rover.
 ## Requirements
 
 - You are given the initial starting point (x,y) of a rover and the direction (N,S,E,W)
@@ -20,3 +61,4 @@ possible point, aborts the sequence and reports the obstacle.
 ## Take into account
 
 - Rovers are expensive, make sure the software works as expected.
+

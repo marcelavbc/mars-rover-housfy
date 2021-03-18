@@ -3,7 +3,6 @@ class Rover {
         this.name = name;
         this.direction = direction;
         this.actualPosition = actualPosition;
-        this.travelLog = [{ row: 0, col: 0 }]
         this.planet = planet;
     }
 
@@ -96,7 +95,7 @@ class Rover {
                         process.exit()
                     } else {
                         const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        this.travelLog.push(newPosition);
+                        
                         console.log(`${this.name} moved north`)
                         console.log('===')
                     }
@@ -112,7 +111,7 @@ class Rover {
                         process.exit();
                     } else {
                         const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        this.travelLog.push(newPosition);
+                        
                         console.log(`${this.name} moved west`);
                         console.log('===');
                     }
@@ -128,7 +127,7 @@ class Rover {
                         process.exit();
                     } else {
                         const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        this.travelLog.push(newPosition);
+                        
                         console.log(`${this.name} moved south`);
                         console.log('===');
                     }
@@ -144,7 +143,7 @@ class Rover {
                         process.exit();
                     } else {
                         const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        this.travelLog.push(newPosition);
+                        
                         console.log(`${this.name} moved east`);
                         console.log('===');
                     }
@@ -165,7 +164,7 @@ class Rover {
                         process.exit();
                     } else {
                         const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        this.travelLog.push(newPosition);
+                        
                         console.log(`${this.name} moved south`)
                         console.log('===')
 
@@ -182,7 +181,7 @@ class Rover {
                         process.exit();
                     } else {
                         const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        this.travelLog.push(newPosition);
+                        
                         console.log(`${this.name} moved east`)
                         console.log('===')
 
@@ -200,7 +199,7 @@ class Rover {
                         process.exit();
                     } else {
                         const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        this.travelLog.push(newPosition);
+                        
                         console.log(`${this.name} moved north`)
                         console.log('===')
                     }
@@ -217,7 +216,7 @@ class Rover {
                         process.exit();
                     } else {
                         const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        this.travelLog.push(newPosition);
+                        
                         console.log(`${this.name} moved west`)
                         console.log('===')
 

@@ -18,9 +18,9 @@ console.log(`The ${theRover.name} rover has arrived at ${thePlanet.name}. The eq
 console.log('***')
 
 //Define rover commands
-theRover.setCommands('FFFFFF');
+theRover.setCommands('FFFFFFRFF');
 
 //Rover final position
 console.log('***')
-console.log(`The ${theRover.name} finish the route at the position (row: ${theRover.actualPosition[0].row}, col: ${theRover.actualPosition[0].col}).`)
+console.log(`The ${theRover.name} finish the route at the position (row: ${theRover.actualPosition[0].row}, col: ${theRover.actualPosition[0].col}). ${theRover.name} is facing ${theRover.direction}`)
 
