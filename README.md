@@ -34,7 +34,7 @@ In index.js, the client must insert the following data:
 - Example for two obstacles at positions 0,1 and 3,2:<br />
 **thePlanet.generateObstacles([{ row: 0, col: 1 }, { row: 3, col: 2 }]);**
 
-**Rover:**
+**Rover:** <br />
 *Create the Rover*<br />
 - Example for Rover Nebula that arrives to Mars at position 0,0 and is facing east:<br />
 **const theRover = new Rover('Nebula', thePlanet, [{ row: 0, col: 0 }], 'E');** 
@@ -47,11 +47,11 @@ In index.js, the client must insert the following data:
 
 Node.js is used to execute the Javascript code on the server. This means your machine will need to have node and npm installed.
 
-To run de program, inside de project folder, **run npm install**. 
+To run de program, inside de project folder, **run npm install**. <br />
 Next, to execute: 
 **npm start**
 
-To see execute teste: 
+To see execute teste: <br />
 **npm test**
 
 ## The task
