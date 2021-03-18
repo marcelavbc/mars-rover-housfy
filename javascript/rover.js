@@ -12,27 +12,27 @@ class Rover {
         for (let i = 0; i < string.length; i++) {
             if (!validCommands.includes(string[i])) {
                 console.log(`The command ${string[i]} is not valid. Please, add a valid command: F | B | R | L`);
-                console.log('********')
+                console.log('********');
                 //If a command is invalid, program execution is stopped
-                process.exit()
+                process.exit();
             }
         }
 
         [...string].forEach(letter => {
             console.log(`Your command is: ${letter}`)
-            console.log(`-`)
+            console.log(`-`);
 
             if (letter === 'F') {
-                this.moveFoward()
+                this.moveFoward();
                 return;
             } else if (letter === 'B') {
-                this.moveBack()
+                this.moveBack();
                 return;
             } else if (letter === 'L') {
-                this.turnLeft()
+                this.turnLeft();
                 return;
             } else if (letter === 'R') {
-                this.turnRigth()
+                this.turnRigth();
                 return;
             }
         })
@@ -79,11 +79,11 @@ class Rover {
             if (this.planet.obstacles[i].row === row && this.planet.obstacles[i].col === col) {
                 isBlocked = true;
                 console.log(`Here there is a huge obstacle and the ${this.name} can' t follow the path. Try again... :)`);
-                console.log('********')
-                process.exit()
+                console.log('********');
+                process.exit();
             }
         };
-        return isBlocked
+        return isBlocked;
     }
 
     moveFoward() {
@@ -92,12 +92,10 @@ class Rover {
                 if (this.actualPosition[0].row - 1 >= 0) {
                     this.actualPosition[0].row--;
                     if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
-                        process.exit()
+                        process.exit();
                     } else {
-                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        
-                        console.log(`${this.name} moved north`)
-                        console.log('===')
+                        console.log(`${this.name} moved north`);
+                        console.log('===');
                     }
                 } else {
                     console.log(`It is not possible to move to ${this.direction}! The ${this.planet.name} is over... Try again with a new route.`);
@@ -109,9 +107,7 @@ class Rover {
                     this.actualPosition[0].col--;
                     if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
                         process.exit();
-                    } else {
-                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        
+                    } else {                        
                         console.log(`${this.name} moved west`);
                         console.log('===');
                     }
@@ -125,9 +121,7 @@ class Rover {
                     this.actualPosition[0].row++;
                     if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
                         process.exit();
-                    } else {
-                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        
+                    } else {                        
                         console.log(`${this.name} moved south`);
                         console.log('===');
                     }
@@ -141,9 +135,7 @@ class Rover {
                     this.actualPosition[0].col++;
                     if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
                         process.exit();
-                    } else {
-                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        
+                    } else {                        
                         console.log(`${this.name} moved east`);
                         console.log('===');
                     }
@@ -163,8 +155,6 @@ class Rover {
                     if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
                         process.exit();
                     } else {
-                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        
                         console.log(`${this.name} moved south`)
                         console.log('===')
 
@@ -180,16 +170,13 @@ class Rover {
                     if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
                         process.exit();
                     } else {
-                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        
-                        console.log(`${this.name} moved east`)
-                        console.log('===')
+                        console.log(`${this.name} moved east`);
+                        console.log('===');
 
                     }
                 } else {
                     console.log(`It is not possible to move to ${this.direction}! The ${this.planet.name} is over... Try again with a new route.`);
-                    console.log('===')
-
+                    console.log('===');
                 }
                 break
             case 'S':
@@ -198,15 +185,12 @@ class Rover {
                     if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
                         process.exit();
                     } else {
-                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        
-                        console.log(`${this.name} moved north`)
-                        console.log('===')
+                        console.log(`${this.name} moved north`);
+                        console.log('===');
                     }
                 } else {
                     console.log(`It is not possible to move to ${this.direction}! The ${this.planet.name} is over... Try again with a new route.`);
-                    console.log('===')
-
+                    console.log('===');
                 }
                 break
             case 'E':
@@ -215,15 +199,13 @@ class Rover {
                     if (this.checkObstacle(this.actualPosition[0].row, this.actualPosition[0].col)) {
                         process.exit();
                     } else {
-                        const newPosition = { row: this.actualPosition[0].row, col: this.actualPosition[0].col };
-                        
-                        console.log(`${this.name} moved west`)
-                        console.log('===')
+                        console.log(`${this.name} moved west`);
+                        console.log('===');
 
                     }
                 } else {
                     console.log(`It is not possible to move to ${this.direction}! The ${this.planet.name} is over... Try again with a new route.`);
-                    console.log('===')
+                    console.log('===');
                 }
                 break
         }
