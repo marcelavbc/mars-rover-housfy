@@ -5,6 +5,7 @@ class Planet {
         this.size = size;
     }
 
+    //Creates the planet's area according to the customer's specifications 
     createBoard(size) {
         const board = [];
         let count = 1
@@ -18,14 +19,16 @@ class Planet {
         return board
     }
 
+    //Generates obstacles on the planet's surface
     generateObstacles(array) {
         for (let i = 0; i < array.length; i++) {
             if (array[i].row > this.board.length || array[i].col > this.board.length) {
                 console.log('ALERT: You can not add obstacles out of the planet! The obstacle position can not be bigger than the planet size.');
-                return;
+                console.log('********')
+                //If an obstacle has been created outside the planet area, stop program execution.
+                process.exit()
             } else {
                 this.obstacles = array;
-
             }
             this.obstacles = array;
         }
